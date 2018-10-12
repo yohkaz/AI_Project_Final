@@ -1,11 +1,9 @@
 import os
 import random
 
-# Suppose that 'Books_used' is at ..\..\Books_used
+# Suppose that the books are at \books
 dir_path = os.path.dirname(os.path.realpath(__file__))
-dir_path = os.path.join(dir_path, os.pardir)
-dir_path = os.path.join(dir_path, os.pardir)
-path_books_used = dir_path + "\Books_used"
+path_books_used = dir_path + "\books"
 
 # Parameters to change
 PART_SIZE = 500 # in lines
@@ -81,9 +79,6 @@ def get_parts_of_book(book_name):
     book_opened = book_opened.readlines()
     index_start, index_end = limits_text_of_book(book_opened)
 
-    #print(index_start)
-    #print(index_end)
-
     n_lines_of_text = index_end - index_start
     n_parts = int((n_lines_of_text / PART_SIZE))
 
@@ -94,7 +89,6 @@ def get_parts_of_book(book_name):
     # Return the parts joined
     parts_to_take = random.sample(range(1, n_parts), MAX_PARTS_TO_TAKE)
     parts_to_take.sort()
-    #print(parts_to_take)
     joined_parts = ""
     i = 0
     while i < MAX_PARTS_TO_TAKE:
@@ -104,17 +98,9 @@ def get_parts_of_book(book_name):
         i += 1
     return joined_parts
 
-#print(get_parts_of_book("19537.txt"))
-#print(get_parts_of_book("keats-ode-495.txt"))
-#print(get_parts_of_book("49396-8.txt"))
-
 
 def books_to_parts():
-    #dir_path = os.path.dirname(os.path.realpath(__file__))
-    #dir_path = os.path.join(dir_path, os.pardir)
-    #dir_path = os.path.join(dir_path, os.pardir) + "\First Model Data\Parts of Books"
-
-    dir_path = os.path.dirname(os.path.realpath(__file__)) + "\Parts of Books"
+    dir_path = os.path.dirname(os.path.realpath(__file__)) + "\parts_of_books"
 
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
