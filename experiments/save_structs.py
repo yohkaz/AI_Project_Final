@@ -7,7 +7,7 @@ from sklearn.model_selection import StratifiedKFold
 import numpy as np
 
 model_dir_path = os.path.dirname(os.path.realpath(__file__))
-train_books = pd.read_csv(model_dir_path + "\\..\\train.csv")
+train_books = pd.read_csv(model_dir_path + "\\..\\dataset\\train.csv")
 
 
 # np.set_printoptions(threshold=np.nan)

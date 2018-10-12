@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 stop_words = ENGLISH_STOP_WORDS.union(['gutenberg', 'project'])
 
 model_dir_path = os.path.dirname(os.path.realpath(__file__))
-parts_dir_path = model_dir_path + "\Parts of Books"
+parts_dir_path = model_dir_path + "..\dataset\parts_of_books"
 
 
 # From https://buhrmann.github.io/tfidf-analysis.html
@@ -82,9 +82,6 @@ def train_vectorizer(list_files, vectorizer):
     list_texts = []
     i = 0
     for file in list_files:
-        #if i >= 2:
-        #    break
-        #print(i, ": ", file)
         file_opened = open(parts_dir_path + "\\" + file, "r", encoding="ISO-8859-1")
         file_opened = file_opened.read()
         list_texts.append(file_opened)
@@ -146,38 +143,4 @@ def idf_result(tfidf_vectorizer, in_top_n=30000, out_file=False):
             fp.write("\n".join(top_feats_idf))
 
     return top_feats_idf
-
-
-def results():
-    tfidf_vectorizer, train_tfidf = create_vectorizer_tfidf(os.listdir(parts_dir_path), in_max_df=1.0)
-    tf_tfidf_result(tfidf_vectorizer, train_tfidf, out_file=False)
-    idf_result(tfidf_vectorizer, out_file=True)
-
-#results()
-
-
-# ---------------- TEST AREA: to delete! ----------------------
-def test():
-    # Create a transform
-    vectorizer = TfidfVectorizer(use_idf=False, norm='l1')
-
-    # Create list with the texts of all parts
-    list_texts = ["hey the list", "Create list with the texts of all parts"]
-    i = 0
-    # Tokenize and build dictionarry
-    # vectorizer.fit([list_texts[0]])
-    # vectorizer.fit([list_texts[1]])
-    # vectorizer.transform(list_texts)
-    #vectorizer.fit_transform(list_texts)
-    #vectorizer.fit([list_texts[0]])
-    #vectorizer.fit([list_texts[1]])
-    #vectorizer.transform(list_texts)
-    #print(vectorizer.vocabulary_)
-    #print(vectorizer.idf_)
-    #print(top_n_features(vectorizer))
-    train_tfidf = vectorizer.fit_transform(list_texts)
-    print(top_feats_in_doc(train_tfidf, vectorizer.get_feature_names(), 0, 10))
-    print(top_feats_in_doc(train_tfidf, vectorizer.get_feature_names(), 1, 10))
-
-#test()
-
+    
