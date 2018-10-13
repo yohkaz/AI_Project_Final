@@ -1,0 +1,12 @@
+Packages used in the project:
+
+- pandas
+- matplotlib
+- numpy
+- scikit-learn also called sklearn
+- BeautifulSoup
+- urllib
+- pickle
+- scipy
+
+Also, we used code found in the following link: https://buhrmann.github.io/tfidf-analysis.html
