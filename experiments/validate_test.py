@@ -8,16 +8,16 @@ def initialize(train_file, val_file, test_file=None, save_matrices=False, load_m
                test_mat_filename=None, years_filename=None):
     model_dir_path = os.path.dirname(os.path.realpath(__file__))
 
-    train_books = pd.read_csv(model_dir_path + "\\..\\" + train_file)
-    val_books = pd.read_csv(model_dir_path + "\\..\\" + val_file)
+    train_books = pd.read_csv(model_dir_path + "\\..\\dataset\\" + train_file)
+    val_books = pd.read_csv(model_dir_path + "\\..\\dataset\\" + val_file)
 
     if test_file is not None:
-        run_models.initialize_years_file(model_dir_path + "\\..\\" + train_file, model_dir_path + "\\..\\" + val_file,
-                                         model_dir_path + "\\..\\" + test_file)
-        test_books = pd.read_csv(model_dir_path + "\\..\\" + test_file)
+        run_models.initialize_years_file(model_dir_path + "\\..\\dataset\\" + train_file, model_dir_path + "\\..\\dataset\\" + val_file,
+                                         model_dir_path + "\\..\\dataset\\" + test_file)
+        test_books = pd.read_csv(model_dir_path + "\\..\\dataset\\" + test_file)
         train_books = pd.concat([train_books, val_books], ignore_index=True)
     else:
-        run_models.initialize_years_file(model_dir_path + "\\..\\" + train_file, model_dir_path + "\\..\\" + val_file)
+        run_models.initialize_years_file(model_dir_path + "\\..\\dataset\\" + train_file, model_dir_path + "\\..\\dataset\\" + val_file)
         test_books = val_books
 
     train_books = train_books.loc[:, train_books.columns != 'Unnamed: 0']
@@ -70,7 +70,7 @@ def initialize(train_file, val_file, test_file=None, save_matrices=False, load_m
     run_models.initialize_matrices(train_matrix, val_matrix, y_train)
 
 
-def run_validation(train_file, val_file, p, n_neighbors, weights,
+def run_validation_test(train_file, val_file, p, n_neighbors, weights,
                 test_file=None, save_matrices_1=False, load_matrices=False, train_mat_filename=None,
                 test_mat_filename=None, years_filename=None, n_components_1=None, coef=None, n_components_2=None,
                 save_matrices_2=False, train_mat_filename_2=None,
@@ -108,5 +108,5 @@ def run_validation(train_file, val_file, p, n_neighbors, weights,
     exp_var, mse, mae, r2, error_percentage, recall, precision = run_models.print_results(plot=True)
 
 if __name__ == '__main__':
-    run_validation("train.csv", "val.csv", "test.csv", p=2, n_neighbors=3, weights='distance',
+    run_validation_test("train.csv", "val.csv", "test.csv", p=2, n_neighbors=3, weights='distance',
                    n_components_1=1000, coef=5, n_components_2=300)

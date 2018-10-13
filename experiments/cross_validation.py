@@ -23,12 +23,12 @@ def initialize(matrices_train_filename, matrices_val_filename, list_lasso_indexe
     global list_lasso_indexes
 
     model_dir_path = os.path.dirname(os.path.realpath(__file__))
-    train_books = pd.read_csv(model_dir_path + "\\..\\train.csv")
+    train_books = pd.read_csv(model_dir_path + "\\..\\dataset\\train.csv")
 
     all_years = train_books['Year']
 
     # open folds and matrices
-    fileObject = open("indices_5fold", 'rb')
+    fileObject = open("\\..\\dataset\\indices_5fold", 'rb')
     indices_list = pickle.load(fileObject)
 
     fileObject = open(matrices_train_filename, 'rb')
