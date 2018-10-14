@@ -7,6 +7,7 @@ Files:
     books/
     This directory contains all the books of our dataset.
     Each book has his own .txt file.
+    We submitted only a few books. The whole directory weight too much.
 
     parts_of_books:
     This directory contains the parts of the books that will be used in our experiments.

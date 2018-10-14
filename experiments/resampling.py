@@ -99,7 +99,6 @@ def gen_synth_cases(rel_train_mat, y_train, over_n, k):
             else:
                 new_example_neighbours = np.vstack((example, rand_neighbour))
                 distances_new = pairwise_distances(X=[new_example], Y=new_example_neighbours, metric='euclidean').flatten()
-            print("YES")
             dist_1 = distances_new[0] # distance from new point to original example
             dist_2 = distances_new[1] # distance from new point to original example's chosen neighbour
             # weighted multiplication such that bigger distance -> less impact on result

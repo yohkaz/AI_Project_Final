@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 stop_words = ENGLISH_STOP_WORDS.union(['gutenberg', 'project'])
 
 model_dir_path = os.path.dirname(os.path.realpath(__file__))
-parts_dir_path = model_dir_path + "..\dataset\parts_of_books"
+parts_dir_path = model_dir_path + "\..\dataset\parts_of_books"
 
 
 # From https://buhrmann.github.io/tfidf-analysis.html

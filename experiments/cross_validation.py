@@ -28,7 +28,7 @@ def initialize(matrices_train_filename, matrices_val_filename, list_lasso_indexe
     all_years = train_books['Year']
 
     # open folds and matrices
-    fileObject = open("\\..\\dataset\\indices_5fold", 'rb')
+    fileObject = open(model_dir_path + "\..\dataset\indices_5fold", 'rb')
     indices_list = pickle.load(fileObject)
 
     fileObject = open(matrices_train_filename, 'rb')
@@ -113,17 +113,9 @@ def cross_validation(name_model, list_dict_parameters, name_param_to_plot=None, 
 
             if 'n_components' in dict_params:
                 # use PCA
-                print(train_matrix.shape)
-                print(val_matrix.shape)
-
                 t_svd = TruncatedSVD(n_components=dict_params['n_components'])
                 train_matrix = t_svd.fit_transform(train_matrix)
-                print(train_matrix.shape)
                 val_matrix = t_svd.transform(val_matrix)
-                print(val_matrix.shape)
-
-            print(train_matrix.shape)
-            print(val_matrix.shape)
 
             if 'coef' in dict_params:
                 year_train_books = year_train_books.reset_index(drop=True)
@@ -150,20 +142,11 @@ def cross_validation(name_model, list_dict_parameters, name_param_to_plot=None, 
                 train_matrix = train_matrix[:, list_lasso_indexes[i]]
                 val_matrix = val_matrix[:, list_lasso_indexes[i]]
 
-            print("after smote")
-            print(train_matrix.shape)
-            print(val_matrix.shape)
-
             if 'n_components_2' in dict_params:
                 # use PCA
-                print(train_matrix.shape)
-                print(val_matrix.shape)
                 t_svd = TruncatedSVD(n_components=dict_params['n_components_2'])
                 train_matrix = t_svd.fit_transform(train_matrix)
-                print(train_matrix.shape)
-                print(year_train_books.shape)
                 val_matrix = t_svd.transform(val_matrix)
-                print(val_matrix.shape)
 
             if save_after_smote:
                 train_after_smote.append(train_matrix)

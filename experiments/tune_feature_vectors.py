@@ -19,8 +19,8 @@ def cv_feature_vectors():
     list_params_lasso = [
        {'alpha': 0.0001}
     ]
-
-   cross_validation.cross_validation('lasso', list_params_lasso)
+    
+    cross_validation.cross_validation('lasso', list_params_lasso)
 
 if __name__ == '__main__':
     cv_feature_vectors()

@@ -74,7 +74,8 @@ def run_validation_test(train_file, val_file, p, n_neighbors, weights,
                 test_file=None, save_matrices_1=False, load_matrices=False, train_mat_filename=None,
                 test_mat_filename=None, years_filename=None, n_components_1=None, coef=None, n_components_2=None,
                 save_matrices_2=False, train_mat_filename_2=None,
-                test_mat_filename_2=None, years_filename_2=None):
+                test_mat_filename_2=None, years_filename_2=None,
+                csv_filename='results.csv'):
 
     initialize(train_file, val_file, test_file, save_matrices_1, load_matrices, train_mat_filename,
                test_mat_filename, years_filename)
@@ -107,6 +108,17 @@ def run_validation_test(train_file, val_file, p, n_neighbors, weights,
     run_models.run_knn(p, n_neighbors, weights)
     exp_var, mse, mae, r2, error_percentage, recall, precision = run_models.print_results(plot=True)
 
+    # Output the .csv file
+    if test_file is not None and csv_filename is not None:
+        model_dir_path = os.path.dirname(os.path.realpath(__file__))
+        test_books = pd.read_csv(model_dir_path + "\\..\\dataset\\" + test_file)
+        test_books = test_books.loc[:, test_books.columns != 'Unnamed: 0']
+        name_test_books = []
+        for index, rows in test_books.iterrows():
+            name_test_books.append(test_books['Filename'][index][2:-1])
+
+        run_models.results_to_csv(name_test_books, csv_filename)
+
 if __name__ == '__main__':
-    run_validation_test("train.csv", "val.csv", "test.csv", p=2, n_neighbors=3, weights='distance',
+    run_validation_test("train.csv", "val.csv", test_file="test.csv", p=2, n_neighbors=3, weights='distance',
                    n_components_1=1000, coef=5, n_components_2=300)

@@ -159,3 +159,10 @@ def print_results(plot=False):
     # return result if average need to be calculated
     return exp_var, mse, mae, r2, error_percentage, recall, precision
 
+# Return the predicted years
+def results_to_csv(name_of_books, csv_filename):
+    import pandas as pd
+    global y_pred
+    d = {'Name of book': name_of_books, 'Prediction': y_pred}
+    df = pd.DataFrame(data=d)
+    df.to_csv(csv_filename, encoding='utf-8', index=False)
