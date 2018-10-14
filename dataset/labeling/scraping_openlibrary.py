@@ -33,26 +33,3 @@ def scrape_date(name_book, author):
         return None
     return date
 
-# Tests..
-# print(scrape_date("Dorothy and the Wizard in Oz", None))
-# print(scrape_date("The Grain Of Dust A Novel", None))
-# print(scrape_date("Little Lord Fauntleroy", None))
-# print(scrape_date("How to Tell Stories to Children", None))
-# print(scrape_date("The Little Lame Prince", "Miss Mulock--Pseudonym of Maria Dinah Craik"))
-
-df = pd.DataFrame(columns=['Author', 'Book', 'Scraped Year'])
-data = pd.read_csv("Data9.csv")
-i = 0
-for index, row in data.iterrows():
-    if pd.isnull(data.iloc[index, 1]):
-        a = None
-    else:
-        a = row['Author']
-    b = row['Book']
-    print(i)
-    date = scrape_date(b, a)
-    d = {'Author' : [a], 'Book' : [b], 'Scraped Year' : [date]}
-    df2 = pd.DataFrame(data=d)
-    df = df.append(df2, ignore_index=True)
-    df.to_csv("test2.csv")
-    i += 1

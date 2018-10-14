@@ -27,6 +27,7 @@ Files:
     matrices/
     This directory contains all the features matrices we saved. This way, we don't have to
     generate those again at every run.
+    (we don't submit it because it weight a lot)
 
 Scripts:
 /dataset/
