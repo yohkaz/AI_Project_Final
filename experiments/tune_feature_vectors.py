@@ -2,6 +2,7 @@ import cross_validation
 
 # cross validation for evaluating different feature vectors
 def cv_feature_vectors():
+    # Example:
     # Initialize with tfidf directorty for example
     cross_validation.initialize("matrices\\20\\20_train", "matrices\\20\\20_val", None)
     print("Initialization done")
